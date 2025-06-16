@@ -1,23 +1,23 @@
 #!/bin/bash
 
-# Caminho para o projeto
+# Path to the project
 cd /c/Projetos/java/demo-dao-jdbc || {
-  echo "Erro: Pasta não encontrada."
+  echo "Error: file or pasta not found."
   exit 1
 }
 
-# Exibe status atual
-echo ">>> Status do repositório:"
+# displays current status
+echo ">>> Repository status:"
 git status
 
-# Adiciona todos os arquivos alterados
-echo ">>> Adicionando arquivos..."
+# Add all altered files
+echo ">>> Adding files..."
 git add .
 
-# Cria commit com mensagem e data atual
-MENSAGEM="Atualização em $(date +'%d/%m/%Y %H:%M:%S')"
-echo ">>> Criando commit: $MENSAGEM"
-git commit -m "$MENSAGEM"
+# Create commits with current data
+MENSAGE="Update in $(date +'%d/%m/%Y %H:%M:%S')"
+echo ">>> Create Commits: $MENSAGE"
+git commit -m "$MENSAGE"
 
 # Envia para o repositório remoto
 echo ">>> Enviando para o GitHub..."
