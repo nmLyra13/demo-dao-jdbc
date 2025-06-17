@@ -22,20 +22,14 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public void insert(Seller obj) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void update(Seller obg) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -50,9 +44,7 @@ public class SellerDaoJDBC implements SellerDao {
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				Department dep = new Department();
-				dep.setId(rs.getInt("DepartmentId"));
-				dep.setName(rs.getString("DepName"));
+				Department dep = instantiateDepartment(rs);
 				Seller obj = new Seller();
 				obj.setId(rs.getInt("Id"));
 				obj.setName(rs.getString("Name"));
@@ -64,7 +56,6 @@ public class SellerDaoJDBC implements SellerDao {
 				return obj;
 			}
 			return null;
-	
 		}
 		catch (SQLException e) {
 			throw new DbException(e.getMessage());
@@ -75,10 +66,16 @@ public class SellerDaoJDBC implements SellerDao {
 		}
 	}
 
+	private Department instantiateDepartment(ResultSet rs) {
+		Department dep = new Department();
+		dep.setId(rs.getInt("DepartmentId"));
+		dep.setName(rs.getString("DepName"));
+		return dep;
+	}
+
 	@Override
 	public List<Seller> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
