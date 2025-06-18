@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -97,12 +100,18 @@ public class SellerDaoJDBC implements SellerDao {
 			
 			rs = st.executeQuery();
 			
-			
+			List<Seller> list = new ArrayList<>();
+			Map<Integer, Department> map = new HashMap<>();
 			
 			while (rs.next()) {
-				Department dep = instantiateDepartment(rs);
+				
+				Department dep = map.get(rs.getInt("DepartmentId"));
+				if(dep == null) {
+					dep = instantiateDepartment(rs);
+					map.put(key, value);
+				
 				Seller obj = instantiateSeller(rs, dep);
-				return obj;
+				list.add(obj);
 			}
 			return null;
 		}
